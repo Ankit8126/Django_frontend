@@ -1,88 +1,97 @@
 {% extends 'base.html' %} {% block content %}
-<div class="row justify-content-center mt-5">
+<div class="row justify-content-center align-items-center vh-100" style="background-color: #ffff;">
   <div class="col-md-6">
-    <h3 class="text-center mb-4">Register</h3>
-    <form id="registerForm">
-      <div class="mb-3">
-        <label for="fullName" class="form-label">Full Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="fullName"
-          placeholder="Enter your full name"
-          oninput="validateFullName()"
-          required
-        />
-        <span class="text-danger" id="fullNameError"></span>
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          placeholder="Enter your email"
-          oninput="validateEmail()"
-          required
-        />
-        <span class="text-danger" id="emailError"></span>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="Enter your password"
-          oninput="validatePassword()"
-          required
-        />
-        <span class="text-danger" id="passwordError"></span>
-      </div>
-      <div class="mb-3">
-        <label for="confirmPassword" class="form-label">Confirm Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="confirmPassword"
-          placeholder="Confirm your password"
-          oninput="validateConfirmPassword()"
-          required
-        />
-        <span class="text-danger" id="confirmPasswordError"></span>
-      </div>
-      <div class="mb-3">
-        <label for="role" class="form-label">Role</label>
-        <select class="form-select" id="role" required>
-          <!-- <option value="user">User</option> -->
-          <option value="editor">Editor</option>
-          <option value="journalist">Journalist</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="number" class="form-label">Mobile Number</label>
-        <input
-            type="number"
+    <div class="card p-4" style="border-radius: 8px; background-color: #243e56; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); width: 24vw; margin-left: -170px;">
+      <h3 class="text-center mb-4" style="color: #ffff; font-weight: bold; ">Register</h3>
+      <form id="registerForm">
+        <div class="mb-3">
+          <label for="fullName" class="form-label" style="color: #ffff;">Full Name</label>
+          <input
+            type="text"
             class="form-control"
-            id="number"
-            placeholder="Enter your mobile number"
-            oninput="validatePhoneNumber()"
-            maxlength="10"
+            id="fullName"
+            placeholder="Enter your full name"
+            oninput="validateFullName()"
             required
-        />
-        <small class="text-danger" id="numberError"></small>
-    </div>
-    
-      <button
-        type="button"
-        class="btn btn-primary w-100"
-        onclick="registerUser()"
-      >
-        Register
-      </button>
+            style="height: 45px; font-size: 14px;"
+          />
+          <span class="text-danger" id="fullNameError" style="font-size: 12px;"></span>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label" style="color: #ffff;">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter your email"
+            oninput="validateEmail()"
+            required
+            style="height: 45px; font-size: 14px;"
+          />
+          <span class="text-danger" id="emailError" style="font-size: 12px;"></span>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label" style="color: #ffff;">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Enter your password"
+            oninput="validatePassword()"
+            required
+            style="height: 45px; font-size: 14px;"
+          />
+          <span class="text-danger" id="passwordError" style="font-size: 12px;"></span>
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label" style="color: #ffff;">Confirm Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            placeholder="Confirm your password"
+            oninput="validateConfirmPassword()"
+            required
+            style="height: 45px; font-size: 14px;"
+          />
+          <span class="text-danger" id="confirmPasswordError" style="font-size: 12px;"></span>
+        </div>
+        <div class="mb-3">
+          <label for="role" class="form-label" style="color: #ffff;">Role</label>
+          <select class="form-select" id="role" required style="height: 45px; font-size: 14px;">
+            <option value="editor">Editor</option>
+            <option value="journalist">Journalist</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="number" class="form-label" style="color: #ffff;">Mobile Number</label>
+          <input
+              type="number"
+              class="form-control"
+              id="number"
+              placeholder="Enter your mobile number"
+              oninput="validatePhoneNumber()"
+              maxlength="10"
+              required
+              style="height: 45px; font-size: 14px;"
+          />
+          <small class="text-danger" id="numberError" style="font-size: 12px;"></small>
+      </div>
+      
+        <button
+          type="button"
+          class="btn btn-primary w-100 mt-3"
+          onclick="registerUser()"
+          style="height: 45px; background-color: #ffff; border: none; font-size: 20px; font-weight: bold; color: #0d1721; transition: all 0.3s ease;"
+          onmouseover="this.style.backgroundColor='#0d1721'; this.style.color='#ffff';"
+          onmouseout="this.style.backgroundColor='#ffff'; this.style.color='#243e56';"
+        >
+          Register
+        </button>
 
-      <p>If you already have an account? <a href="{% url 'login' %}">Login</a></p>
-    </form>
+        <p class="text-center mt-3" style="color: #ffff;">If you already have an account? <a href="{% url 'login' %}" style="color: #0056b3;">Login</a></p>
+      </form>
+    </div>
   </div>
 </div>
 
@@ -97,7 +106,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="otpModalLabel">Verify OTP</h5>
+        <h5 class="modal-title" id="otpModalLabel" style="color: #243e56;">Verify OTP</h5>
         <button
           type="button"
           class="btn-close"
@@ -108,23 +117,25 @@
       <div class="modal-body">
         <form id="otpForm">
           <div class="mb-3">
-            <label for="otpEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="otpEmail" readonly />
+            <label for="otpEmail" class="form-label" style="color: #243e56;">Email</label>
+            <input type="email" class="form-control" id="otpEmail" readonly style="height: 45px; font-size: 14px;"/>
           </div>
           <div class="mb-3">
-            <label for="otp" class="form-label">Enter OTP</label>
+            <label for="otp" class="form-label" style="color: #243e56;">Enter OTP</label>
             <input
               type="text"
               class="form-control"
               id="otp"
               placeholder="Enter OTP"
               required
+              style="height: 45px; font-size: 14px;"
             />
           </div>
           <button
             type="button"
-            class="btn btn-success w-100"
+            class="btn btn-success w-100 mt-3"
             onclick="verifyOTP()"
+            style="height: 45px; font-size: 16px; font-weight: bold;"
           >
             Verify OTP
           </button>
@@ -297,67 +308,10 @@ function registerUser() {
                     document.getElementById("email").value;
                 const otpModal = new bootstrap.Modal(
                     document.getElementById("otpModal")
-                );
-                otpModal.show();
+            )
             }
-        })
-        .catch((errors) => {
-            hideLoader();
-            
-            // Handle specific field errors
-            if (typeof errors === "object") {
-                if (errors.email) {
-                    alert(`Email Error: ${errors.email}`);
-                } else if (errors.number) {
-                    alert(`Number Error: ${errors.number}`);
-                } else {
-                    // For other field errors
-                    Object.keys(errors).forEach((key) => {
-                        alert(`${key}: ${errors[key]}`);
-                    });
-                }
-            } else if (typeof errors === "string") {
-                alert(errors); // For general errors
-            } else {
-                alert("User with this email or number already exists.");
-            }
-        });
+          }
+        )
 }
-
-function verifyOTP() {
-    // Show loader
-    showLoader();
-
-    const data = {
-        email: document.getElementById("otpEmail").value,
-        otp: document.getElementById("otp").value,
-    };
-
-    fetch("/users/register-verify-otp/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            // Hide loader
-            hideLoader();
-
-            if (data.message) {
-                alert("OTP Verified Successfully!");
-                window.location.href = "/users/login-page/";
-            } else {
-                // Show server-side error
-                alert("Error: " + JSON.stringify(data));
-            }
-        })
-        .catch((error) => {
-            // Hide loader
-            hideLoader();
-            // Show network or unexpected errors
-            alert("Unexpected error occurred: " + error);
-        });
-}
-
 </script>
 {% endblock %}

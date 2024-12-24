@@ -11,7 +11,7 @@
     <style>
       /* Custom styling for the header strip */
       .header-strip {
-        background-color: #879da1; /* Deep teal for professional look */
+        background-color: #243e56; /* Deep teal for professional look */
         color: #effbfe;
       }
 
@@ -111,6 +111,20 @@
         max-width: 1200px;
         padding: 0px;
       }
+      .btn{
+        background-color: #243e56 !important;
+        color: white;
+        border-radius: 5px;
+        padding: 10px 20px;
+        transition: background-color 0.3s;
+        border:#243e56;
+      }
+      .btn:hover{
+        background-color: #17293a !important;
+        transition: background-color 0.3s;
+        border: #17293a;
+        transform: scale(1.03);
+      }
 
       /* Media Queries */
       @media (max-width: 768px) {
@@ -125,7 +139,7 @@
       /* Custom button style */
       .custom-btn {
         background-color: #effbfe;
-        color: #51766d;
+        color: #243e56;
         padding: 10px 20px;
         border-radius: 5px;
         text-decoration: none;
@@ -134,7 +148,7 @@
       }
 
       .custom-btn:hover {
-        background-color: #004d40;
+        background-color: #17293a;
         color: #fff;
         border: 2px solid #ffffff;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -146,7 +160,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark header-strip">
       <div class="container">
         <img
-          src="{% static 'images/logo.png' %}"
+          src="{% static 'media/logo.png' %}"
           alt="Logo"
           style="height: 60px" />
         <h1>Article Gallery</h1>
@@ -159,7 +173,7 @@
               id="userDropdown"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              style="background-color: #00796b; border-radius: 6px">
+              style="background-color: #243e56; border-radius: 6px">
               {{ user.first_name }}
             </button>
             <ul
@@ -216,7 +230,7 @@
                   <a
                     href="{% url 'logout' %}"
                     class="btn btn-danger"
-                    style="background-color: #00796b; border-color: #00796b"
+                    style="background-color: #243e56; border-color: #243e56"
                     >Logout</a
                   >
                 </div>
@@ -232,56 +246,7 @@
         {% endif %}
       </div>
     </nav>
-
-    <!-- Main Content and Sidebar -->
-    <div class="d-flex">
-      <!-- Sidebar -->
-      {% if user.is_authenticated %}
-      <div class="sidebar">
-        <!-- <h3>Dashboard</h3> -->
-        <p class="welcome">
-          Welcome, <br />{{ user.first_name }} {{ user.last_name }}
-        </p>
-        <p class="role">Your Role: {{ user.role }}</p>
-        <hr />
-
-        {% if user.is_head %}
-        <a
-          href="{% url 'head:head_dashboard' %}"
-          class="{% if request.path == '/head/dashboard/' %}active{% endif %}"
-          >Dashboard</a
-        >
-        <a
-          href="{% url 'head:manage_users' %}"
-          class="{% if request.path == '/head/manage_users/' %}active{% endif %}"
-          >Manage Users</a
-        >
-        {% elif user.is_journalist %}
-        <a
-          href="{% url 'journalist:journalist_dashboard' %}"
-          class="{% if request.path == '/journalist_dashboard/' %}active{% endif %}"
-          >Dashboard</a
-        >
-        <a
-          href="{% url 'journalist:journalist_dashboard_step1' %}"
-          class="{% if request.path == '/journalist_dashboard_step1/' %}active{% endif %}"
-          >Create Article</a
-        >
-        {% elif user.is_editor %}
-        <a
-          href="{% url 'dashboard:editor' %}"
-          class="{% if request.path == '/editor/' %}active{% endif %}"
-          >Dashboard</a
-        >
-        {% endif %}
-        <a
-          href="{% url 'dashboard' %}"
-          class="{% if request.path == '/dashboard/' %}active{% endif %}"
-          >View Published Articles</a
-        >
-      </div>
-      {% endif %}
-
+    
       <!-- Content Area -->
       <div class="content-area">{% block content %} {% endblock %}</div>
     </div>

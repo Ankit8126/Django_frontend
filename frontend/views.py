@@ -25,25 +25,35 @@ def admin_dash(request):
     permission_classes = [IsAuthenticated]
     return render(request, 'dashboard/admin_dashBoard/admin_dashBoard.html')
 def admin_create_user(request):
+    permission_classes = [IsAuthenticated]
     return render(request, 'dashboard/admin_dashBoard/Create_user.html')
 def admin_manage_user(request):
+    permission_classes = [IsAuthenticated]
     return render(request, 'dashboard/admin_dashBoard/manage_users.html')
 def admin_published_article(request):
+    permission_classes = [IsAuthenticated]
     return render(request, 'dashboard/admin_dashBoard/published_article_admin.html')
 # editor dashboard 
 def editor_dashboard(request):
+    permission_classes = [IsAuthenticated]
+
     return render(request, 'dashboard/editor.html')
 # editor dashboard 
 def journalist_dashboard(request):
+    permission_classes = [IsAuthenticated]
     return render(request, 'dashboard/journalist.html')
 
 def article_detail(request, article_id):
+    permission_classes = [IsAuthenticated]
     # Fetch the article based on the ID, or return a 404 if not found
     article = get_object_or_404(Article, id=article_id)
     return render(request, 'dashboard/Journalist/singleJournalistPage.html', {'article': article})
 
 
 def create_article(request):
+    permission_classes = [IsAuthenticated]
+    user=request.user
+    print(user)
     if request.method == "POST":
         # Extract form data
         title = request.POST.get("title")
@@ -88,6 +98,7 @@ def create_article(request):
 
 
 def edit_article(request, article_id):
+    permission_classes = [IsAuthenticated]
     article = get_object_or_404(Article, id=article_id)
 
     if request.method == "POST":
@@ -111,6 +122,11 @@ def edit_article(request, article_id):
     return render(request, 'dashboard/Journalist/editPage.html', {'article': article})
 
 def published_article(request):
+    permission_classes = [IsAuthenticated]
+
     return render(request, 'dashboard/editor/published_article.html')
 def dashboard(request):
+    permission_classes = [IsAuthenticated]
+    user=request.user
+    print(user)
     return render(request, 'dashboard/editor/editor_dashboard.html')

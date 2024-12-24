@@ -1,3 +1,4 @@
+{% extends 'nav.html' %} {% block content %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -83,6 +84,101 @@
         border-radius: 50%;
         width: 40px;
         height: 40px;
+      }
+      /*------------------------ Table CSS ---------------------------*/
+      /* Global Container Style */
+      .container {
+        font-family: Arial, sans-serif;
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 1200px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #243e56;
+        text-align: left;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      /* Table Styling */
+      .articles-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .articles-table thead {
+        background-color: #243e56;
+        color: white;
+      }
+
+      .articles-table th,
+      .articles-table td {
+        text-align: left;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+      }
+
+      .articles-table th {
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .articles-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      .articles-table tbody tr:hover {
+        background-color: #f1f7fc;
+      }
+
+      .status-update {
+        text-align: center;
+      }
+
+      .status-select {
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        transition: 0.3s;
+      }
+
+      .status-select:focus {
+        border-color: #243e56;
+        outline: none;
+      }
+
+      /* Button for Actions */
+      .btn {
+        display: inline-block;
+        padding: 8px 15px;
+        color: white;
+        background-color: #243e56;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        transition: 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #1d3246;
+      }
+
+      .btn:disabled {
+        background-color: #aaa;
+        cursor: not-allowed;
       }
     </style>
   </head>
@@ -374,9 +470,9 @@
         <thead>
           <tr>
             <th>Title</th>
-            <th>Subtitle</th>
-            <th>Author</th>
-            <th>Content</th>
+            <th>Author/th>
+            <th>Created At</th>
+            <th>Image</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -388,9 +484,9 @@
         <thead>
           <tr>
             <th>Title</th>
-            <th>Subtitle</th>
             <th>Author</th>
-            <th>Content</th>
+            <th>Created AT</th>
+            <th>Image</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -710,7 +806,7 @@
 
       document.addEventListener("DOMContentLoaded", function () {
         // Replace with your API URL
-        const apiUrl = "http://127.0.0.1:8000/articles/articles/";
+        const apiUrl = "/articles/articles/";
         const accessToken = localStorage.getItem("access_token");
 
         // Function to fetch the articles data
@@ -766,9 +862,9 @@
 
               row.innerHTML = `
             <td>${article.title}</td>
-            <td>${article.subtitle}</td>
-            <td>${article.author_name}</td>
-            <td>${article.content}</td>
+            <td>${article.author}</td>
+            <td>${article.created_at}</td>
+            <td>${article.image}</td>
             <td>${article.status}</td>
            
              {% comment %} <td class="status-update">
@@ -808,9 +904,9 @@
 
               row.innerHTML = `
             <td>${article.title}</td>
-            <td>${article.subtitle}</td>
-            <td>${article.author_name}</td>
-            <td>${article.content}</td>
+            <td>${article.author}</td>
+            <td>${article.created_at}</td>
+            <td>${article.image}</td>
             <td>${article.status}</td>
             <td class="status-update">
               <label for="statusSelect-${
@@ -878,3 +974,5 @@
     </script>
   </body>
 </html>
+
+{% endblock %}
