@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+  <title>Article Details</title>
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .article-image {
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .article-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .article-subtitle {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #6c757d;
+      margin-bottom: 20px;
+    }
+
+    .article-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #495057;
+      margin-bottom: 20px;
+    }
+
+    .article-meta {
+      font-size: 0.9rem;
+      color: #6c757d;
+      margin-bottom: 10px;
+    }
+
+    .tags, .categories {
+      font-size: 0.9rem;
+    }
+
+    .tags span, .categories span {
+      margin-right: 5px;
+    }
+
+    .footer {
+      font-size: 0.85rem;
+      color: #6c757d;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <!-- Article content -->
+    <h1 class="article-title">{{ article.title }}</h1>
+    <h3 class="article-subtitle">{{ article.subtitle }}</h3>
+  
+    <!-- Handling images, providing a fallback if no image is present -->
+    <img
+      src="{{ article.image.url | default:'https://picsum.photos/id/1/200/300' }}"
+      alt="{{ article.title }}"
+      class="article-image mb-3" />
+  
+    <p class="article-content">{{ article.content }}</p>
+    <p><strong>Status:</strong> <span class="status">{{ article.status }}</span></p>
+    <p><strong>Author:</strong> <span class="author">{{ article.author.full_name }}</span></p>
+    <!-- Assuming you want the author's full name -->
+    <p><strong>Email:</strong> <span class="author-email">{{ article.author.email }}</span></p>
+  
+    <!-- Tags Section -->
+    <p>
+      <strong>Tags:</strong>
+      {% for tag in article.tags.all %} <span class="tag">{{ tag.name }}</span>{% if not forloop.last %}, {% endif %} {% endfor %}
+    </p>
+  
+    <!-- Categories Section -->
+    <p>
+      <strong>Categories:</strong>
+      {% for category in article.categories.all %} <span class="category">{{ category.name }}</span>{% if not forloop.last %}, {% endif %} {% endfor %}
+    </p>
+  
+    <!-- Optional Comment Section (If you want to display comments) -->
+    {% comment %}
+    <p><strong>Likes:</strong> {{ article.likes|default:0 }}</p>
+    <p><strong>Comments:</strong></p>
+    {% if article.comments.count %}
+    <ul class="comments-list">
+      {% for comment in article.comments.all %}
+      <li class="comment-item">{{ comment.content|default:"No comment text" }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No comments yet.</p>
+    {% endif %} {% endcomment %}
+  </div>  
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
+  </script>
+</body>
+
+</html>
